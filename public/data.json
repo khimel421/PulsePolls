@@ -1,0 +1,68 @@
+[
+     {
+      "title": "Event Feedback Survey",
+      "description": "Share your thoughts on the recent event you attended. Your feedback is important to us.",
+      "options": ["Yes", "No"],
+      "like": 0,
+      "dislike": 0,
+      "category": "Event Satisfaction",
+      "timestamp": "2023-12-16T15:30:45Z"
+    },
+  
+  
+     {
+      "title": "Travel Experience Survey",
+      "description": "Tell us about your recent travel experience. We want to make your journeys more enjoyable.",
+      "options": ["Yes", "No"],
+      "like": 0,
+      "dislike": 0,
+      "category": "Travel and Leisure",
+      "timestamp": "2023-12-16T16:12:20Z"
+    },
+  
+  
+     {
+      "title": "Education Feedback Survey",
+      "description": "Provide feedback on your learning experience. Help us enhance our educational programs.",
+      "options": ["Yes", "No"],
+      "like": 0,
+      "dislike": 0,
+      "category": "Education Quality",
+      "timestamp": "2023-12-16T17:05:55Z"
+    },
+  
+  
+     {
+      "title": "Restaurant Dining Survey",
+      "description": "Share your dining experience at our restaurant. We value your opinion.",
+      "options": ["Yes", "No"],
+      "like": 0,
+      "dislike": 0,
+      "category": "Food and Dining",
+      "timestamp": "2023-12-16T18:40:30Z"
+    },
+  
+  
+     {
+      "title": "Technology Usage Survey",
+      "description": "Tell us about your technology preferences and usage. Your input will shape our future developments.",
+      "options": ["Yes", "No"],
+      "like": 0,
+      "dislike": 0,
+      "category": "Technology Trends",
+      "timestamp": "2023-12-16T19:25:15Z"
+    },
+  
+  
+     {
+      "title": "Environmental Awareness Survey",
+      "description": "Share your thoughts on environmental issues and awareness. Help us make a positive impact.",
+      "options": ["Yes", "No"],
+      "like": 0,
+      "dislike": 0,
+      "category": "Environmental Conservation",
+      "timestamp": "2023-12-16T20:18:45Z"
+    }
+  
+  ]
+  

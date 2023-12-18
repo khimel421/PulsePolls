@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "name": "John Doe",
+      "occupation": "Software Engineer",
+      "text": "I had a great experience with the survey. The questions were insightful, and the results helped me gain valuable insights.",
+      "image": ""
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "occupation": "Marketing Specialist",
+      "text": "The survey was user-friendly, and the data analysis tools provided were fantastic. I highly recommend it!",
+      "image": ""
+    },
+    {
+      "id": 3,
+      "name": "Alex Johnson",
+      "occupation": "Teacher",
+      "text": "As an educator, I found the survey's educational focus extremely beneficial. It's a valuable tool for improving teaching methods.",
+      "image": ""
+    }
+  ]
