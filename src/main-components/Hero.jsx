@@ -4,7 +4,7 @@ import hero from '../assets/hero.jpg'
 
 export default function Hero() {
   return (
-    <div className='bg-[#001d21] text-[#cdcbff] p-2 pt-10 flex flex-col lg:flex-row items-center justify-around'>
+    <div className='bg-[#001d21] text-[#cdcbff] p-4 pt-10 flex flex-col lg:flex-row items-center justify-around'>
        
             <div >
                 <p className='text-6xl font-semibold max-w-lg'>Your Opinion Matters For Our Surveys</p>

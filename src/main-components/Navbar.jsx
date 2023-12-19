@@ -3,11 +3,12 @@ import reactLogo from "../assets/logo.png";
 import { slide as Menu } from "react-burger-menu";
 import Hamburger from "hamburger-react";
 import Container from "../container/Container";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setOpen] = useState(false);
   return (
-    <div className="text-[#cdcbff]  hover:text-black font-inter bg-[#001d21] hover:bg-white flex p-2 items-center justify-between">
+    <div className="text-[#cdcbff]  hover:text-black font-inter bg-[#001d21] hover:bg-white flex p-2 items-center justify-between fixed w-full z-20">
       {/* logo and website name */}
       <section className="flex items-end gap-4">
         <p className="font-inter text-2xl lg:text-2xl pl-2">PullsPolls</p>
@@ -27,9 +28,11 @@ export default function Navbar() {
         </section>
       </section>
 
-      <section className="hidden md:flex gap-4">
-        <button className=" bg-none">Sign In</button>
-        <button className="btn hover:bg-[#001d21] hover:text-[#cdcbff]">Get Started</button>
+      <section className="hidden md:flex gap-4 items-center">
+        <NavLink to={`/signin`}> <button className=" bg-none">Sign In</button> </NavLink> 
+        <NavLink to={`/signup`}><button className="btn hover:bg-[#001d21] hover:text-[#cdcbff]">Get Started</button></NavLink>
+        
+        
       </section>
       <section className=" block md:hidden">
         <Hamburger
@@ -60,8 +63,9 @@ export default function Navbar() {
           </ul>
 
           <div className="flex flex-col gap-4 mt-10 bg-white">
-            <button className=" bg-none">Sign In</button>
-            <button className="btn bg-[#001d21] text-[#cdcbff]  ">Get Started</button>
+             <NavLink to={`/signin`}> <button className=" bg-none">Sign In</button> </NavLink> 
+             <NavLink to={`/signup`}><button className="btn hover:bg-[#001d21] hover:text-[#cdcbff]">Get Started</button></NavLink>
+           
           </div>
       </section>
       {/* <section>

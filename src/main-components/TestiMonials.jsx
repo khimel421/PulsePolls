@@ -16,7 +16,7 @@ export default function TestiMonials() {
       <h1 className="text-center text-3xl font-semibold my-10 text-[#001d21]">
         Testimonials
       </h1>
-      <div className="flex md:grid md:grid-cols-3   overflow-x-scroll gap-4 p-2">
+      <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3   overflow-x-scroll gap-4 p-2">
         {data.map((item, idx) => {
           return (
             <div
