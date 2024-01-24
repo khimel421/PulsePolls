@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -8,17 +8,28 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Pagination } from "swiper/modules";
+import usePublic from "../hooks/usePublic";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../authprovider/AuthProvider";
 
 export default function Slider() {
   const [data, setData] = useState([]);
+  const axiosPublic = usePublic()
+  
+  // useEffect(() => {
+  //   fetch("data.json")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setData(data);
+  //     });
+  // }, []);
   useEffect(() => {
-    fetch("data.json")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setData(data);
-      });
-  }, []);
+    axiosPublic.get('/survey')
+    .then(res => setData(res.data))
+    console.log('data',data.data)
+  },[])
+  
   return (
     <>
       <div className="text-center text-3xl font-semibold my-10">
@@ -59,7 +70,8 @@ export default function Slider() {
                   <h2 className="card-title">{item.title}</h2>
                   <p>{item.description}</p>
                   <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Buy Now</button>
+                    <Link to={`/details/${item._id}`}> <button  className="btn btn-primary">Details</button></Link>
+                    
                   </div>
                 </div>
               </div>

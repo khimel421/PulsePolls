@@ -11,7 +11,12 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
-
+import { useContext } from "react";
+import { AuthContext } from "../authprovider/AuthProvider";
+import { useForm } from "react-hook-form"
+import usePublic from '../hooks/usePublic';
+import { useLocation, useNavigate } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
 function Copyright(props) {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -29,14 +34,37 @@ const defaultTheme = createTheme();
 
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  const navigate = useNavigate()
+  const location = useLocation()
+  const axiosPublic = usePublic()
+  const {signIn,user} = useContext(AuthContext)
+  const form = location.state?.from?.pathname || "/";
+  console.log("location",location.state)
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = (data) => {
+    console.log("register data",data)
+    signIn(data.email, data.password)
+      .then(res => {
+        console.log(res)
+        navigate(form, {replace: true});
+      })
+  }
+  
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get("email"),
+  //     password: data.get("password"),
+  //   });
+  // };
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -57,7 +85,7 @@ export default function SignIn() {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             noValidate
             sx={{ mt: 1 }}
           >
@@ -66,6 +94,7 @@ export default function SignIn() {
               required
               fullWidth
               id="email"
+              {...register("email")}
               label="Email Address"
               name="email"
               autoComplete="email"
@@ -76,6 +105,7 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
+              {...register("password")}
               label="Password"
               type="password"
               id="password"

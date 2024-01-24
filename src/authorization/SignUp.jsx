@@ -13,9 +13,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-
-
-
+import { useContext } from 'react';
+import { AuthContext } from '../authprovider/AuthProvider';
+import { useForm } from "react-hook-form"
+import usePublic from '../hooks/usePublic';
+import { FaGoogle } from "react-icons/fa";
 function Copyright(props) {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -32,14 +34,47 @@ function Copyright(props) {
   const defaultTheme = createTheme();
 
   export default function SignUp() {
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-      });
-    };
+    const axiosPublic = usePublic()
+    const {createUser,googleSignIn} = useContext(AuthContext)
+    const {
+      register,
+      handleSubmit,
+      watch,
+      formState: { errors },
+    } = useForm()
+
+
+    // const handleSubmit = (event) => {
+    //   event.preventDefault();
+    //   const data = new FormData(event.currentTarget);
+    //   console.log({
+    //     email: data.get('email'),
+    //     password: data.get('password'),
+    //     name: data.get('firstName'),
+    //     lastname: data.get("lastName")
+    //   });
+    // };
+
+    const onSubmit = (data) => {
+
+      console.log("register data",data)
+      
+      createUser(data.email,data.password)
+          .then(res => {
+              const loggeduser = res.user
+              console.log(loggeduser)
+              const userInfo = {
+                name: data.name,
+                email: data.email
+            }
+            axiosPublic.post('/user', userInfo)
+              .then(res => {
+                if (res.data.insertedId) {
+                  console.log('data is added')
+                }
+              })
+          })
+    }
   
     return (
       <ThemeProvider theme={defaultTheme}>
@@ -59,12 +94,13 @@ function Copyright(props) {
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="given-name"
                     name="firstName"
+                    {...register("name")}
                     required
                     fullWidth
                     id="firstName"
@@ -88,6 +124,7 @@ function Copyright(props) {
                     fullWidth
                     id="email"
                     label="Email Address"
+                    {...register("email")}
                     name="email"
                     autoComplete="email"
                   />
@@ -96,6 +133,7 @@ function Copyright(props) {
                   <TextField
                     required
                     fullWidth
+                    {...register("password")}
                     name="password"
                     label="Password"
                     type="password"
@@ -118,6 +156,10 @@ function Copyright(props) {
               >
                 Sign Up
               </Button>
+              <div onClick={googleSignIn} className='text-center border rounded-full p-2 mb-2'>
+                  <button className=''><FaGoogle /></button>
+              </div>
+              
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   
